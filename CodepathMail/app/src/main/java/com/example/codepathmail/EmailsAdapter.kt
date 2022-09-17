@@ -1,5 +1,6 @@
 package com.example.codepathmail
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,21 @@ class EmailsAdapter(private val emails: List<Email>) : RecyclerView.Adapter<Emai
         holder.senderTextView.text = email.sender
         holder.titleTextView.text = email.title
         holder.summaryTextView.text = email.summary
+
+        // check if email is read/unread
+        val isEmailRead = email.isRead
+        // if unread, bold all textviews
+        if (!isEmailRead){
+            holder.senderTextView.setTypeface(
+                holder.senderTextView.typeface, Typeface.BOLD_ITALIC
+            )
+            holder.titleTextView.setTypeface(
+                holder.titleTextView.typeface, Typeface.BOLD_ITALIC
+            )
+            holder.summaryTextView.setTypeface(
+                holder.summaryTextView.typeface, Typeface.BOLD_ITALIC
+            )
+        }
     }
 
     override fun getItemCount(): Int {
