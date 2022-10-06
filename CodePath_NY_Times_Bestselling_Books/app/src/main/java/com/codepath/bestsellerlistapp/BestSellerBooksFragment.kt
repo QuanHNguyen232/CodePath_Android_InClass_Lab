@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
-import com.codepath.bestsellerlistapp.R
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.Headers
@@ -22,8 +21,9 @@ import org.json.JSONObject
 // --------------------------------//
 // CHANGE THIS TO BE YOUR API KEY  //
 // --------------------------------//
-private const val API_KEY = "iA3iPt3gZSfLCSRdkzcjqhqNm9KMY90u"
 
+private const val SEARCH_API_KEY = "iA3iPt3gZSfLCSRdkzcjqhqNm9KMY90u"
+//private const val SEARCH_API_KEY = API_KEY
 /*
  * The class for the only fragment in the app, which contains the progress bar,
  * recyclerView, and performs the network calls to the NY Times API.
@@ -56,7 +56,7 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
         // Create and set up an AsyncHTTPClient() here
         val client = AsyncHttpClient()
         val params = RequestParams()
-        params["api-key"] = API_KEY
+        params["api-key"] = SEARCH_API_KEY
 
         // Using the client, perform the HTTP request
         client[
@@ -92,6 +92,7 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
                         recyclerView.adapter = BestSellerBooksRecyclerViewAdapter(models, this@BestSellerBooksFragment)
 
                         // Look for this in Logcat:
+                        Log.d("BestSellerBooksFragment", "response successful $resultsJSON")
                         Log.d("BestSellerBooksFragment", "response successful $booksRawJSON")
                     }
                 }
